@@ -98,7 +98,7 @@ sys_uptime(void)
 
 
 //Add a sys_trace() function in kernel/sysproc.c
-sys_trace(void){
+sys_trace(int){
     printf("sys_trace:Hi\n");
     return 0;
 }
