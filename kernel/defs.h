@@ -63,7 +63,7 @@ void            ramdiskrw(struct buf*);
 void*           kalloc(void);
 void            kfree(void *);
 void            kinit(void);
-uint64 count_free_men(void); //在这里添加计算空闲内存的函数
+uint64 count_free_mem(void); //在这里添加计算空闲内存的函数
 
 // log.c
 void            initlog(int, struct superblock*);
