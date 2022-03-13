@@ -101,11 +101,14 @@ sys_uptime(void)
 //trace系统调用功能的实现
 uint64
 sys_trace(void){
-
-    int n;//这个n就是系统调用时传进来的入参
-    if(argint(0, &n) < 0)
+    int mask;//这个mask就是系统调用时传进来的入参
+    if(argint(0, &mask) < 0)
         return -1;
+   // printf("sys_trace:Hi！ n is %d\n",n);测试用的日志
 
-    printf("sys_trace:Hi！ n is %d\n",n);
+
+   struct proc *p = myproc();
+   p->trace_mask = mask;
+
     return 0;
 }

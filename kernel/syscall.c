@@ -144,11 +144,21 @@ syscall(void)//调用系统函数的入口
   int num;
   struct proc *p = myproc();
 
+
+
   num = p->trapframe->a7;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+      p->trapframe->a0 = syscalls[num]();
+      int trace_mask = p->trace_mask;
+      if( (trace_mask>>num) & 1 )//判断掩码是否命中
+      {
+          printf("%d:syscall %s -> %d\n",p->pid,syscall_names[num-1],p->trapframe->a0);
+      }
 
-      printf("%s被调用了！\n",syscall_names[num-1]);//若是有这一句，每执行一个系统调用，都会将对应的系统调用的名字打印出来
-    p->trapframe->a0 = syscalls[num]();
+
+      //下面一行是测试用的
+      //printf("%s被调用了！\n",syscall_names[num-1]);//若是有这一句，每执行一个系统调用，都会将对应的系统调用的名字打印出来
+
   } else {
     printf("%d %s: unknown sys call %d\n",
             p->pid, p->name, num);
