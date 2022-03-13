@@ -106,6 +106,6 @@ sys_trace(void){
     if(argint(0, &n) < 0)
         return -1;
 
-    printf("sys_trace:Hi！ n is %d\n");
+    printf("sys_trace:Hi！ n is %d\n",n);
     return 0;
 }
