@@ -123,7 +123,7 @@ sys_sysinfo(void)
         return -1;
 
     struct sysinfo sinfo;
-    sinfo.freemen = count_free_men(); // kalloc.c
+    sinfo.freemen = count_free_mem(); // kalloc.c
     sinfo.nproc = count_process(); // proc.c
 
     // 使用 copyout，结合当前进程的页表，获得进程传进来的指针（逻辑地址）对应的物理地址
