@@ -98,8 +98,14 @@ sys_uptime(void)
 
 
 //Add a sys_trace() function in kernel/sysproc.c
+//trace系统调用功能的实现
 uint64
 sys_trace(void){
-    printf("sys_trace:Hi\n");
+
+    int n;//这个n就是系统调用时传进来的入参
+    if(argint(0, &n) < 0)
+        return -1;
+
+    printf("sys_trace:Hi！ n is %d\n");
     return 0;
 }

@@ -139,7 +139,7 @@ static uint64 (*syscalls[])(void) = {
 
 
 void
-syscall(void)
+syscall(void)//调用系统函数的入口
 {
   int num;
   struct proc *p = myproc();
@@ -147,7 +147,7 @@ syscall(void)
   num = p->trapframe->a7;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
 
-      printf("%s被调用了！\n",syscall_names[num-1]);
+      printf("%s被调用了！\n",syscall_names[num-1]);//若是有这一句，每执行一个系统调用，都会将对应的系统调用的名字打印出来
     p->trapframe->a0 = syscalls[num]();
   } else {
     printf("%d %s: unknown sys call %d\n",
