@@ -122,7 +122,7 @@ sys_sysinfo(void)
     if(argaddr(0, &addr) < 0)
         return -1;
 
-    struct sysinfo sysinfo;
+    struct sysinfo sinfo;
     sinfo.freemen = count_free_men(); // kalloc.c
     sinfo.nproc = count_process(); // proc.c
 
